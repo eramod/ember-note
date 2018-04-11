@@ -1,0 +1,9 @@
+{{#edit-note note=model close="close"}}
+  {{!-- An explanation of close="close"
+    close on the left: We define the name of the component parameter we'll use
+     to hold the action
+     This is what the sendAction method's string parameter in the component's
+      closeNote action is referring to.
+    "close" on the right: refers to the name of the action in this template's route file  --}}
+  Notebook: {{model.notebook.title}}
+{{/edit-note}}
