@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import isValidLength from 'ember-note/utils/is-valid-length';
 
 export default Ember.Route.extend({
   model: function(params) {
@@ -6,7 +7,11 @@ export default Ember.Route.extend({
   },
   actions: {
     addNote: function() {
-      this.store.findRecord('notebook',
+      let title = this.controller.get('title');
+      if( !isValidLength(title, 0, 140) ) {
+        alert('Title must be longer than 0 characters and not more than 140.');
+      } else {
+        this.store.findRecord('notebook',
         this.paramsFor('notebooks.notes').notebook_id).then(
         (notebook) => {
           var note = this.store.createRecord('note', {
@@ -20,6 +25,7 @@ export default Ember.Route.extend({
             alert('save failed');
           });
         });
+      }
     },
     deleteNote: function(note) {
       note.deleteRecord();
