@@ -13,7 +13,7 @@ export default Ember.Route.extend({
         // set the user object returned by the query as the user on the
         //  application controller so the user variable used in the application
         //  template works
-        this.controllerFor('application').set('user', user)
+        this.session.set('user', user)
         this.transitionTo('notebooks', user.get('id'));
       });
     }
