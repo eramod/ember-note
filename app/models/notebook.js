@@ -1,8 +1,10 @@
 import DS from 'ember-data';
 
 export default DS.Model.extend({
-  notes: DS.hasMany('note'),
+  title: DS.attr('string'),
   user: DS.belongsTo('user'),
-
-  title: DS.attr('string')
+  notes: DS.hasMany('note'),
+  noteCount: function() {
+    return this.get('notes.length')
+  }
 });
